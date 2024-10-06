@@ -11,6 +11,13 @@ export default class CartItem extends HTMLElement {
 
         const template = document.getElementById("cart-item-template");
         const content = template.content.cloneNode(true);
+        
+        function interpolate(str, params) {
+            let names = Object.keys(params);
+            let values = Object.keys(params);
+            const body = `return \`${str}\`;`;
+            return new Function(...names, body)(...values);
+        }
 
         this.appendChild(content);    
 

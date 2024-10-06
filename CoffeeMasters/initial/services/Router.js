@@ -13,7 +13,11 @@ const Router = {
         });
         // Process initial URL   
         Router.go(location.pathname);
-    },    
+    },
+    setMetadata(title, color) {
+        document.title = `${title}`
+        document.querySelector("meta[name=theme-color]").content = color;
+    },
     go: async (route, addToHistory=true) => {
         if (addToHistory) {
             history.pushState({ route }, '', route);
@@ -22,6 +26,7 @@ const Router = {
         switch (route) {
             case "/":
                 pageElement = document.createElement("menu-page");
+                Router.setMetadata("Menu", "#43281C");
                 break;
             case "/order":
                 await import("import OrderPage from './components/OrderPage.js'")
